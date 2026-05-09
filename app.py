@@ -61,90 +61,7 @@ header{visibility:visible!important;}
     background:rgba(0,212,255,.22)!important;
     border-color:rgba(0,212,255,.4)!important;
 }
-/* ════════════════════════════════════════════════
-   SIDEBAR — Complete Professional Redesign
-   ════════════════════════════════════════════════ */
-[data-testid="stSidebar"]{
-    background:linear-gradient(160deg,#010509 0%,#04091a 30%,#060f22 60%,#08142c 100%)!important;
-    border-right:1px solid rgba(0,212,255,0.18)!important;
-    box-shadow:4px 0 40px rgba(0,0,0,0.6),inset -1px 0 0 rgba(0,212,255,0.06)!important;
-    padding-top:0!important;
-}
-[data-testid="stSidebar"]>div{padding-top:0!important;}
-[data-testid="stSidebar"] *{color:var(--text)!important;}
 
-/* Sidebar inner scrollable area */
-[data-testid="stSidebar"] section[data-testid="stSidebarContent"]{
-    padding:1rem 0.85rem 1.5rem!important;
-    display:flex;flex-direction:column;gap:0;
-}
-
-/* ── Hide only the radio group title label ── */
-[data-testid="stSidebar"] .stRadio > div:first-child{
-    display:none!important;
-}
-
-/* ── Radio group wrapper ── */
-[data-testid="stSidebar"] .stRadio > div{
-    background:transparent!important;
-    border:none!important;
-    padding:0!important;
-    border-radius:0!important;
-    display:flex;flex-direction:column;gap:2px!important;
-}
-
-/* ── Each nav item ── */
-[data-testid="stSidebar"] .stRadio label{
-    display:flex!important;
-    align-items:center!important;
-    padding:0.78rem 1rem!important;
-    border-radius:10px!important;
-    cursor:pointer!important;
-    transition:background .22s ease, border-color .22s ease, color .22s ease!important;
-    font-weight:500!important;
-    font-size:0.88rem!important;
-    letter-spacing:0.01em!important;
-    background:transparent!important;
-    border:1px solid transparent!important;
-    border-left:3px solid transparent!important;
-    color:#94a3b8!important;
-    margin:0!important;
-}
-[data-testid="stSidebar"] .stRadio label:hover{
-    background:rgba(0,212,255,0.06)!important;
-    border-left-color:rgba(0,212,255,0.35)!important;
-    border-top-color:transparent!important;
-    border-right-color:transparent!important;
-    border-bottom-color:transparent!important;
-    color:#cbd5e1!important;
-}
-[data-testid="stSidebar"] .stRadio [aria-checked="true"]{
-    background:linear-gradient(90deg,rgba(0,212,255,0.14) 0%,rgba(124,58,237,0.07) 100%)!important;
-    border-left:3px solid #00d4ff!important;
-    border-top-color:rgba(0,212,255,0.1)!important;
-    border-right-color:rgba(0,212,255,0.06)!important;
-    border-bottom-color:rgba(0,212,255,0.08)!important;
-    color:#00d4ff!important;
-    box-shadow:0 2px 16px rgba(0,212,255,0.1),inset 0 0 20px rgba(0,212,255,0.04)!important;
-}
-[data-testid="stSidebar"] .stRadio [aria-checked="true"] p,
-[data-testid="stSidebar"] .stRadio [aria-checked="true"] span{
-    color:#00d4ff!important;font-weight:700!important;
-}
-
-/* Hide the radio dot */
-[data-testid="stSidebar"] .stRadio [type="radio"]{display:none!important;}
-[data-testid="stSidebar"] .stRadio [data-baseweb="radio"] > div:first-child{
-    display:none!important;
-}
-/* ── Sidebar divider ── */
-[data-testid="stSidebar"] hr{
-    border-color:rgba(0,212,255,0.10)!important;
-    margin:.8rem 0!important;
-}
-
-/* ── Sidebar markdown ── */
-[data-testid="stSidebar"] .stMarkdown{padding-left:.1rem!important;}
 
 /* ════════════════════════
    MAIN CONTENT COMPONENTS
@@ -363,6 +280,68 @@ with open(LOGO_PATH, "rb") as f:
     
 with st.sidebar:
     # ── Branding ──
+    # ══════════════════════════════════════════════════════════════════════════════
+# SIDEBAR
+# ══════════════════════════════════════════════════════════════════════════════
+
+import base64
+with open(LOGO_PATH, "rb") as f:
+    logo_b64 = base64.b64encode(f.read()).decode()
+
+if "page" not in st.session_state:
+    st.session_state.page = "  Overview"
+
+PAGES = [
+    "  Overview",
+    "  Data Cleaning",
+    "  EDA",
+    "  Correlation",
+    "  Distributions",
+    "  Regression",
+    "  Predict a Player",
+]
+
+st.markdown("""
+<style>
+[data-testid="stSidebar"] .stButton > button {
+    width:100%!important;
+    text-align:left!important;
+    background:transparent!important;
+    border:1px solid transparent!important;
+    border-left:3px solid transparent!important;
+    border-radius:10px!important;
+    padding:0.78rem 1rem!important;
+    font-size:0.88rem!important;
+    font-weight:500!important;
+    color:#94a3b8!important;
+    font-family:'DM Sans',sans-serif!important;
+    transition:background .22s ease, border-color .22s ease, color .22s ease!important;
+    margin-bottom:2px!important;
+    transform:none!important;
+    box-shadow:none!important;
+}
+[data-testid="stSidebar"] .stButton > button:hover {
+    background:rgba(0,212,255,0.06)!important;
+    border-left-color:rgba(0,212,255,0.35)!important;
+    color:#cbd5e1!important;
+    transform:none!important;
+    box-shadow:none!important;
+}
+.active-nav-btn > button {
+    background:linear-gradient(90deg,rgba(0,212,255,0.14) 0%,rgba(124,58,237,0.07) 100%)!important;
+    border-left:3px solid #00d4ff!important;
+    border-top-color:rgba(0,212,255,0.1)!important;
+    border-right-color:rgba(0,212,255,0.06)!important;
+    border-bottom-color:rgba(0,212,255,0.08)!important;
+    color:#00d4ff!important;
+    font-weight:700!important;
+    box-shadow:0 2px 16px rgba(0,212,255,0.1)!important;
+    transform:none!important;
+}
+</style>
+""", unsafe_allow_html=True)
+
+with st.sidebar:
     st.markdown(f"""
     <div style="
         text-align:center;
@@ -387,20 +366,38 @@ with st.sidebar:
     </div>
     """, unsafe_allow_html=True)
 
-
-
-    page = st.radio("", [
-        "  Overview",
-        "  Data Cleaning",
-        "  EDA",
-        "  Correlation",
-        "  Distributions",
-        "  Regression",
-        "  Predict a Player",
-    ], label_visibility="collapsed")
+    for p in PAGES:
+        is_active = st.session_state.page == p
+        if is_active:
+            st.markdown('<div class="active-nav-btn">', unsafe_allow_html=True)
+        if st.button(p, key=f"nav_{p}"):
+            st.session_state.page = p
+            st.rerun()
+        if is_active:
+            st.markdown('</div>', unsafe_allow_html=True)
 
     st.divider()
 
+    st.markdown("""
+    <div style="padding:.4rem .2rem;display:flex;flex-direction:column;gap:.5rem;">
+      <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);
+        border-radius:8px;padding:.6rem .9rem;">
+        <div style="font-size:.6rem;font-family:'Space Mono',monospace;color:#334155;
+          letter-spacing:.12em;text-transform:uppercase;margin-bottom:.3rem;">Data Source</div>
+        <div style="font-size:.75rem;color:#64748b;font-family:'DM Sans',sans-serif;">
+          FIFA 22 · SoFIFA Dataset</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);
+        border-radius:8px;padding:.6rem .9rem;">
+        <div style="font-size:.6rem;font-family:'Space Mono',monospace;color:#334155;
+          letter-spacing:.12em;text-transform:uppercase;margin-bottom:.3rem;">Stack</div>
+        <div style="font-size:.75rem;color:#64748b;font-family:'DM Sans',sans-serif;">
+          Streamlit · Plotly · NumPy · scikit-learn</div>
+      </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    page = st.session_state.page
     # ── Bottom info ──
     st.markdown("""
     <div style="padding:.4rem .2rem;display:flex;flex-direction:column;gap:.5rem;">
